@@ -171,7 +171,7 @@ async fn display_task(hub75: Hub75<esp_hal::Async, FBType>, mut fb: &'static mut
         .draw(fb)
         .unwrap();
 
-        let mut xfer = hub75.swap(fb);
+        let mut xfer = hub75.swap(fb).expect("failed to swap framebuffers");
         xfer.wait_for_done().await;
         fb = xfer.wait().expect("DMA transfer failed");
 
@@ -229,7 +229,7 @@ async fn main(_spawner: Spawner) {
     info!(
         "DMA descriptors: {} ({} bytes)",
         tx_descriptors.len(),
-        tx_descriptors.len() * core::mem::size_of::<esp_hal::dma::DmaDescriptor>()
+        tx_descriptors.len() * core::mem::size_of_val(tx_descriptors)
     );
 
     let pins = Hub75Pins16 {
