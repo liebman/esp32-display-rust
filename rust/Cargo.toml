@@ -64,13 +64,14 @@ smoltcp = { version = "0.13.0", default-features = false, features = [
 
 critical-section = "1.2.0"
 static_cell = "2.1.1"
-esp-hub75 = { version = "0.14.0", features = [
+esp-hub75 = { version = "0.15.0", features = [
   "esp32",
   "defmt",
   "skip-black-pixels",
   "tail-closes-latch",
   "lead-blank-16",
-  "trail-blank-32",
+  # "trail-blank-32",
+  "inter-row-blank-32",
   "circular-dma",
 ] }
 embedded-graphics = "0.8.2"
@@ -97,5 +98,5 @@ defmt = ["esp-hub75/defmt"]
 log = ["esp-hub75/log"]
 defmt-rtt = []
 
-[patch.crates-io]
-esp-hub75 = { git = "https://github.com/liebman/esp-hub75.git", rev = "85eccf1ba41640fc8ed0d55b8c35267ab68ce135" }
+# [patch.crates-io]
+# esp-hub75 = { git = "https://github.com/liebman/esp-hub75.git", rev = "85eccf1ba41640fc8ed0d55b8c35267ab68ce135" }
